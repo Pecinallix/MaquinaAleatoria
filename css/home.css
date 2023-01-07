@@ -1,0 +1,14 @@
+.titulo{
+  text-align: center;
+  font-size: 4rem;
+  margin: 20px auto;
+}
+.container-img{
+  display: flex;
+  justify-content: center;
+}
+.container-img img{
+  max-width: 100%;
+  width: 500px;
+  cursor: pointer;
+}
