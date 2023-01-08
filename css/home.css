@@ -2,10 +2,12 @@
   text-align: center;
   font-size: 4rem;
   margin: 20px auto;
+  color: #f84e4e
 }
 .container-img{
   display: flex;
   justify-content: center;
+  margin: 50px auto;
 }
 .container-img img{
   max-width: 100%;
