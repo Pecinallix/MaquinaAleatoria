@@ -11,7 +11,7 @@
 }
 .container-img img{
   max-width: 100%;
-  width: 500px;
+  width: 400px;
   cursor: pointer;
 }
 .sub-titulo{
@@ -20,5 +20,4 @@
 }
 body{
   background-color: #ffff9e;
-  /* background-color: #0ccbff; */
 }

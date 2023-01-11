@@ -2,36 +2,6 @@ const maqui = document.querySelector('img');
 maqui.addEventListener('click', total);
 total();
 function total() {
-  function numeroradom() {
-    return Math.floor(Math.random() * 29);
-  }
-  const n1 = numeroradom();
-
-  function numeroradom() {
-    return Math.floor(Math.random() * 29);
-  }
-  const n2 = numeroradom();
-
-  function numeroradom() {
-    return Math.floor(Math.random() * 29);
-  }
-  const n3 = numeroradom();
-
-  function numeroradom() {
-    return Math.floor(Math.random() * 29);
-  }
-  const n4 = numeroradom();
-
-  function numeroradom() {
-    return Math.floor(Math.random() * 29);
-  }
-  const n5 = numeroradom();
-
-  function numeroradom() {
-    return Math.floor(Math.random() * 29);
-  }
-  const n6 = numeroradom();
-
   const f1 = [
     ' Dado',
     ' Baixo',
@@ -144,7 +114,7 @@ function total() {
     ' poxa',
     ' qual',
     ' que',
-    ' iss',
+    ' está',
     ' talvez',
     ' eu',
     ' tenha',
@@ -183,7 +153,7 @@ function total() {
     ' cerveja',
     ' mar',
     ' skate',
-    ' boboleta',
+    ' borboleta',
     ' barraco',
     ' tijolo',
     ' coração',
@@ -224,22 +194,20 @@ function total() {
     ' mal.',
     ' filme.',
   ];
-  const fra = f1[n1];
-  const fre = f2[n2];
-  const fri = f3[n3];
-  const fro = f4[n4];
-  const fru = f5[n5];
-  const frao = f6[n6];
+  const frase1 = f1[Math.floor(Math.random() * 29)];
+  const frase2 = f2[Math.floor(Math.random() * 29)];
+  const frase3 = f3[Math.floor(Math.random() * 29)];
+  const frase4 = f4[Math.floor(Math.random() * 29)];
+  const frase5 = f5[Math.floor(Math.random() * 29)];
+  const frase6 = f6[Math.floor(Math.random() * 29)];
 
   const far = document.querySelector('img');
 
-  far.addEventListener('click', semnome);
+  far.addEventListener('click', semnome, numeroimg);
   function semnome() {
-    const fa = document.querySelector('.sub-titulo');
-    fa.innerHTML = fra + fre + fri + fro + fru + frao;
+    const frase = document.querySelector('.sub-titulo');
+    frase.innerHTML = frase1 + frase2 + frase3 + frase4 + frase5 + frase6;
   }
-
-  far.addEventListener('click', numeroimg);
 
   function numeroimg() {
     return Math.floor(Math.random() * 9);
@@ -248,7 +216,6 @@ function total() {
 
   far.addEventListener('click', troca);
   function troca() {
-    const imagen = (document.querySelector('img').src =
-      'img/maqui' + ni + '.png');
+    const imagen = (document.querySelector('img').src = ` img/maqui${ni}.png`);
   }
 }
