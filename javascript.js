@@ -1,5 +1,4 @@
-const maqui = document.querySelector('img');
-maqui.addEventListener('click', total);
+const maqui = document.querySelector('img').addEventListener('click', total);
 total();
 function total() {
   const f1 = [
@@ -202,20 +201,22 @@ function total() {
   const frase6 = f6[Math.floor(Math.random() * 29)];
 
   const far = document.querySelector('img');
+  far.addEventListener('click', frases);
 
-  far.addEventListener('click', semnome, numeroimg);
-  function semnome() {
+  function frases() {
     const frase = document.querySelector('.sub-titulo');
     frase.innerHTML = frase1 + frase2 + frase3 + frase4 + frase5 + frase6;
-  }
+    const imagen = (document.querySelector('img').src = ` img/maqui${Math.floor(
+      Math.random() * 9 + 2,
+    )}.png`);
 
-  function numeroimg() {
-    return Math.floor(Math.random() * 9);
-  }
-  const ni = numeroimg();
-
-  far.addEventListener('click', troca);
-  function troca() {
-    const imagen = (document.querySelector('img').src = ` img/maqui${ni}.png`);
+    if (imagen.length == 16) {
+      document.querySelector('img').src = 'img/maqui10.gif';
+      document.body.style.color = 'black';
+    } else {
+      document.body.style.backgroundColor = '';
+      document.body.style.color = '';
+    }
+    console.log(imagen.length);
   }
 }

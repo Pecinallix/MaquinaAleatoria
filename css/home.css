@@ -17,7 +17,9 @@
 .sub-titulo{
   text-align: center;
   font-size: 2rem;
+  text-shadow: 0px 0px 8px white ;
 }
+
 body{
   background-color: #ffff9e;
 }
