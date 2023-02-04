@@ -1,7 +1,5 @@
-const maqui = document.querySelector('img').addEventListener('click', total);
-total();
 function total() {
-  const f1 = [
+  let f1 = [
     ' Dado',
     ' Baixo',
     ' Como',
@@ -27,15 +25,13 @@ function total() {
     ' Morte',
     ' Pato',
     ' Gato',
-    ' Bosolanro',
+    ' brilha',
     ' Fruta',
     ' Pena',
     ' Mesmo',
     ' Talvez',
-  ];
-  const f2 = [
     ' é',
-    ' ,',
+    ' Coisa',
     ' eita',
     ' seria',
     ' quem',
@@ -64,8 +60,6 @@ function total() {
     ' uma',
     ' mesmo',
     ' talvez',
-  ];
-  const f3 = [
     ' fugir',
     ' pneus',
     ' orquestra',
@@ -84,7 +78,7 @@ function total() {
     ' tornado',
     ' laranja',
     ' cinquenta',
-    ' Lula',
+    ' laranja',
     ' cenoura',
     ' dividir',
     ' anedota',
@@ -96,8 +90,6 @@ function total() {
     ' agudo',
     ' equipamento',
     ' utilidade',
-  ];
-  const f4 = [
     ' é',
     ' ,',
     ' eita',
@@ -128,8 +120,6 @@ function total() {
     ' uma',
     ' mesmo',
     ' Pato',
-  ];
-  const f5 = [
     ' girassol',
     ' consoantes',
     ' leite',
@@ -141,7 +131,7 @@ function total() {
     ' praga',
     ' senta',
     ' girafa',
-    ' ,',
+    ' 42',
     ' carteira',
     ' resumo',
     ' Pato',
@@ -160,63 +150,65 @@ function total() {
     ' sorrir',
     ' vera',
     ' virada',
-  ];
-  const f6 = [
     ' ?',
-    ' !',
-    ' torneio.',
-    ' tomou.',
-    ' Pato.',
-    ' ocupado.',
-    ' visita.',
-    ' olho.',
-    ' lagoa.',
-    ' bengala.',
-    ' baixo.',
-    ' cubo.',
-    ' corre.',
-    ' cubo.',
-    '?',
+    ' igual',
+    ' torneio',
+    ' tomou',
+    ' Pato',
+    ' ocupado',
+    ' visita',
+    ' olho',
+    ' lagoa',
+    ' bengala',
+    ' baixo',
+    ' cubo',
+    ' corre',
+    ' cubo',
+    ' ilha',
     '.',
     '!!',
     '...',
-    ' quebra.',
+    ' quebra',
     ' ei!',
-    ' banco.',
-    ' malote.',
-    ' briga.',
-    ' Matuê.',
-    ' irmão.',
-    ' rum.',
-    ' lancha.',
-    ' bem.',
-    ' mal.',
-    ' filme.',
+    ' banco',
+    ' malote',
+    ' briga',
+    ' Matuê',
+    ' irmão',
+    ' rum',
+    ' lancha',
+    ' bem',
+    ' mal',
+    ' filme',
   ];
-  const frase1 = f1[Math.floor(Math.random() * 29)];
-  const frase2 = f2[Math.floor(Math.random() * 29)];
-  const frase3 = f3[Math.floor(Math.random() * 29)];
-  const frase4 = f4[Math.floor(Math.random() * 29)];
-  const frase5 = f5[Math.floor(Math.random() * 29)];
-  const frase6 = f6[Math.floor(Math.random() * 29)];
+  let frase1 = f1[Math.floor(Math.random() * 180)];
+  let frase2 = f1[Math.floor(Math.random() * 180)];
+  let frase3 = f1[Math.floor(Math.random() * 180)];
+  let frase4 = f1[Math.floor(Math.random() * 180)];
+  let frase5 = f1[Math.floor(Math.random() * 180)];
+  let frase6 = f1[Math.floor(Math.random() * 180)];
 
-  const far = document.querySelector('img');
-  far.addEventListener('click', frases);
-
+  frases();
   function frases() {
-    const frase = document.querySelector('.sub-titulo');
+    let frase = document.querySelector('.sub-titulo');
     frase.innerHTML = frase1 + frase2 + frase3 + frase4 + frase5 + frase6;
-    const imagen = (document.querySelector('img').src = ` img/maqui${Math.floor(
-      Math.random() * 9 + 2,
+    let imagen = (document.querySelector('img').src = ` img/maqui${Math.floor(
+      Math.random() * 10 + 1,
     )}.png`);
-
+    console.log(imagen);
     if (imagen.length == 16) {
       document.querySelector('img').src = 'img/maqui10.gif';
       document.body.style.color = 'black';
     } else {
-      document.body.style.backgroundColor = '';
       document.body.style.color = '';
     }
-    console.log(imagen.length);
+  }
+  corBackground();
+  function corBackground() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let color = 'rgb(' + r + ',' + g + ',' + b + ')';
+    document.body.style.background = color;
   }
 }

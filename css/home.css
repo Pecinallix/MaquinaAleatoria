@@ -11,13 +11,13 @@
 }
 .container-img img{
   max-width: 100%;
-  width: 400px;
+  width: 350px;
   cursor: pointer;
 }
 .sub-titulo{
   text-align: center;
-  font-size: 2rem;
-  text-shadow: 0px 0px 8px white ;
+  text-transform: uppercase;
+  font-size: 1.8rem;
 }
 
 body{
