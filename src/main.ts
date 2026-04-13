@@ -1,6 +1,6 @@
 import '../style.css';
 
-// ── Dados ────────────────────────────────────────────────────────────────────
+// ── Dados ─────────────────────────────────────────────────────────────────────
 
 const palavras: string[] = [
   'Dado', 'Baixo', 'Como', 'Bola', 'Hoje', 'Amanhã', 'Procurar', 'Cativeiro',
@@ -23,11 +23,28 @@ const palavras: string[] = [
   'Da', 'Do', 'E', 'A', 'É',
 ];
 
-// ── Elementos DOM ─────────────────────────────────────────────────────────────
+const emojis: string[] = [
+  '🤔', '🎲', '🌀', '💥', '🎯', '🔥', '⚡', '🌊', '🎪', '🦄',
+  '🌈', '🎭', '🍀', '💫', '🎸', '🚀', '👾', '🎮', '🌵', '🍕',
+  '🦋', '🌺', '⭐', '🎩', '🧲', '🪄', '🦅', '🎊', '🌙', '🍄',
+  '🐸', '🦊', '🤡', '👻', '🧨', '🫧', '🪩', '🦩', '🌋', '🐙',
+];
+
+const fontes: string[] = [
+  "'Nunito', sans-serif",
+  "'Fredoka One', cursive",
+  "Georgia, serif",
+  "'Courier New', monospace",
+  "Impact, fantasy",
+  "'Arial Black', sans-serif",
+];
+
+// ── DOM ───────────────────────────────────────────────────────────────────────
 
 const maquina = document.getElementById('maquina') as HTMLImageElement;
 const resultado = document.getElementById('resultado') as HTMLElement;
 const contadorEl = document.querySelector('.contador') as HTMLElement;
+const root = document.documentElement;
 
 // ── Estado ────────────────────────────────────────────────────────────────────
 
@@ -45,9 +62,10 @@ function acionar(): void {
   gerarFrase();
   trocarImagem();
   trocarBackground();
+  efeitoEspecial();
 }
 
-// ── Funções ───────────────────────────────────────────────────────────────────
+// ── Funções principais ────────────────────────────────────────────────────────
 
 function animarMaquina(): void {
   maquina.classList.remove('sacudir');
@@ -62,12 +80,31 @@ function gerarFrase(): void {
     () => palavras[Math.floor(Math.random() * palavras.length)]
   );
 
-  resultado.textContent = selecionadas.join(' ');
-  resultado.style.fontSize = (Math.random() * 1.6 + 1.1).toFixed(2) + 'rem';
-  resultado.style.letterSpacing = Math.floor(Math.random() * 7) + 'px';
+  // 50% de chance de emojis flanqueando a frase
+  const comEmoji = Math.random() > 0.5;
+  const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+  resultado.textContent = comEmoji
+    ? `${emoji} ${selecionadas.join(' ')} ${emoji}`
+    : selecionadas.join(' ');
+
+  // Fonte aleatória
+  resultado.style.fontFamily = fontes[Math.floor(Math.random() * fontes.length)];
+
+  // Tamanho, espaçamento e peso aleatórios
+  resultado.style.fontSize = (Math.random() * 1.8 + 1.0).toFixed(2) + 'rem';
+  resultado.style.letterSpacing = Math.floor(Math.random() * 8) + 'px';
   resultado.style.fontWeight = Math.random() > 0.4 ? '800' : '400';
 
-  resultado.classList.remove('fade-in');
+  // Sombra colorida aleatória (40% de chance)
+  if (Math.random() > 0.6) {
+    const h = Math.floor(Math.random() * 360);
+    const offset = Math.floor(Math.random() * 4) + 1;
+    resultado.style.textShadow = `${offset}px ${offset}px 0 hsl(${h}, 90%, 35%)`;
+  } else {
+    resultado.style.textShadow = '';
+  }
+
+  resultado.classList.remove('fade-in', 'arcoiris');
   void resultado.offsetWidth;
   resultado.classList.add('fade-in');
 }
@@ -82,11 +119,83 @@ function trocarImagem(): void {
     maquina.src = `/img/maqui${num}.png`;
     document.body.style.color = '';
   }
+
+  aplicarFiltroMaquina();
 }
 
 function trocarBackground(): void {
   const h = Math.floor(Math.random() * 360);
   const s = Math.floor(Math.random() * 30 + 65); // 65–95%
   const l = Math.floor(Math.random() * 25 + 55); // 55–80%
-  document.body.style.background = `hsl(${h}, ${s}%, ${l}%)`;
+
+  // 30% de chance de gradiente em vez de cor sólida
+  if (Math.random() < 0.3) {
+    const h2 = (h + Math.floor(Math.random() * 100 + 40)) % 360;
+    const angulo = Math.floor(Math.random() * 360);
+    document.body.style.background =
+      `linear-gradient(${angulo}deg, hsl(${h}, ${s}%, ${l}%), hsl(${h2}, ${s}%, ${l}%))`;
+  } else {
+    document.body.style.background = `hsl(${h}, ${s}%, ${l}%)`;
+  }
+}
+
+// ── Filtro da máquina ─────────────────────────────────────────────────────────
+
+function aplicarFiltroMaquina(): void {
+  const base = 'drop-shadow(0 6px 12px rgba(0,0,0,0.2))';
+  const extras = [
+    '', // sem filtro extra
+    `hue-rotate(${Math.floor(Math.random() * 360)}deg)`,
+    `sepia(0.6) hue-rotate(${Math.floor(Math.random() * 360)}deg)`,
+    `contrast(1.4) brightness(1.1)`,
+    `saturate(3)`,
+    `brightness(0.85) contrast(1.3)`,
+  ];
+  const extra = extras[Math.floor(Math.random() * extras.length)];
+  root.style.setProperty('--filtro-maquina', extra ? `${base} ${extra}` : base);
+}
+
+function aplicarNeonMaquina(): void {
+  const h = Math.floor(Math.random() * 360);
+  root.style.setProperty(
+    '--filtro-maquina',
+    `drop-shadow(0 0 18px hsl(${h}, 100%, 60%)) drop-shadow(0 0 40px hsl(${h}, 100%, 50%))`
+  );
+  setTimeout(aplicarFiltroMaquina, 1200);
+}
+
+// ── Efeitos especiais raros ───────────────────────────────────────────────────
+
+function efeitoEspecial(): void {
+  const chance = Math.random();
+
+  if (chance < 0.07) {
+    // Inversão total de cores por 700ms (7%)
+    document.body.style.filter = 'invert(1)';
+    setTimeout(() => { document.body.style.filter = ''; }, 700);
+
+  } else if (chance < 0.14) {
+    // Terremoto na página (7%)
+    document.body.classList.add('terremoto');
+    setTimeout(() => document.body.classList.remove('terremoto'), 600);
+
+  } else if (chance < 0.19) {
+    // Texto arco-íris animado por 2.5s (5%)
+    resultado.style.textShadow = '';
+    resultado.classList.add('arcoiris');
+    setTimeout(() => resultado.classList.remove('arcoiris'), 2500);
+
+  } else if (chance < 0.23) {
+    // Flash colorido rápido 5x (4%)
+    let flashes = 0;
+    const blink = setInterval(() => {
+      const h = Math.floor(Math.random() * 360);
+      document.body.style.background = `hsl(${h}, 90%, 65%)`;
+      if (++flashes >= 5) clearInterval(blink);
+    }, 120);
+
+  } else if (chance < 0.27) {
+    // Brilho neon na máquina (4%)
+    aplicarNeonMaquina();
+  }
 }

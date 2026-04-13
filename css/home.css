@@ -7,10 +7,8 @@
   --fonte-titulo: 'Fredoka One', cursive;
   --fonte-body: 'Nunito', sans-serif;
   --sombra-titulo: 3px 3px 0px rgba(0, 0, 0, 0.12);
-  --sombra-img: 0 6px 12px rgba(0, 0, 0, 0.18);
-  --sombra-img-hover: 0 8px 18px rgba(0, 0, 0, 0.28);
+  --filtro-maquina: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
   --transicao-bg: background 0.5s ease;
-  --transicao-filter: filter 0.2s ease;
 }
 
 /* ── Base ──────────────────────────────────────────────────────────────────── */
@@ -19,6 +17,7 @@ body {
   transition: var(--transicao-bg);
   font-family: var(--fonte-body);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ── Título ────────────────────────────────────────────────────────────────── */
@@ -58,12 +57,13 @@ body {
   cursor: pointer;
   user-select: none;
   -webkit-user-drag: none;
-  filter: drop-shadow(var(--sombra-img));
-  transition: var(--transicao-filter);
+  filter: var(--filtro-maquina);
+  transition: filter 0.3s ease;
 }
 
 .container-img img:hover {
-  filter: drop-shadow(var(--sombra-img-hover)) brightness(1.04);
+  /* brightness adicionado por cima do filtro atual */
+  filter: var(--filtro-maquina) brightness(1.08);
 }
 
 /* ── Resultado ─────────────────────────────────────────────────────────────── */
@@ -77,7 +77,7 @@ body {
   transition: color 0.3s ease;
 }
 
-/* ── Animações ─────────────────────────────────────────────────────────────── */
+/* ── Animação: sacudir máquina ─────────────────────────────────────────────── */
 @keyframes sacudir {
   0%   { transform: rotate(0deg) scale(1); }
   15%  { transform: rotate(-6deg) scale(1.06); }
@@ -92,17 +92,45 @@ body {
   animation: sacudir 0.45s ease;
 }
 
+/* ── Animação: aparecer texto ──────────────────────────────────────────────── */
 @keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
   animation: aparecer 0.3s ease forwards;
+}
+
+/* ── Animação: terremoto na página ────────────────────────────────────────── */
+@keyframes terremoto {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  10%  { transform: translate3d(-6px, 2px, 0); }
+  20%  { transform: translate3d(6px, -2px, 0); }
+  30%  { transform: translate3d(-5px, -3px, 0); }
+  40%  { transform: translate3d(5px, 4px, 0); }
+  50%  { transform: translate3d(-3px, -4px, 0); }
+  60%  { transform: translate3d(3px, 2px, 0); }
+  70%  { transform: translate3d(-2px, 3px, 0); }
+  80%  { transform: translate3d(2px, -3px, 0); }
+  90%  { transform: translate3d(-1px, 1px, 0); }
+}
+
+.terremoto {
+  animation: terremoto 0.6s ease;
+}
+
+/* ── Animação: texto arco-íris ────────────────────────────────────────────── */
+@keyframes arcoiris {
+  0%   { color: hsl(0,   90%, 45%); }
+  16%  { color: hsl(45,  90%, 45%); }
+  33%  { color: hsl(120, 80%, 38%); }
+  50%  { color: hsl(180, 80%, 38%); }
+  66%  { color: hsl(240, 85%, 55%); }
+  83%  { color: hsl(300, 85%, 45%); }
+  100% { color: hsl(360, 90%, 45%); }
+}
+
+.arcoiris {
+  animation: arcoiris 0.6s linear infinite;
 }
