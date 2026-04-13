@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Máquina Aléatoria</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Máquina Aleatória</title>
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-  <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
-
   <div class="titulo">
     <h1>Máquina Aleatória</h1>
+    <span class="contador">0 cliques</span>
   </div>
+
   <div class="container-img">
-    <img onclick="total()" src="img/maqui2.png" alt="">
+    <img id="maquina" src="img/maqui2.png" alt="Máquina Aleatória">
   </div>
-  <div class="sub-titulo"></div>
 
+  <div id="resultado" class="sub-titulo"></div>
 
-
-
-  <script src="javascript.js"></script>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>

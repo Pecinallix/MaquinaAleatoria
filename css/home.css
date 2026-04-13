@@ -1,25 +1,108 @@
-.titulo{
-  text-align: center;
-  font-size: 4rem;
-  margin: 20px auto;
-  color: #f84e4e
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;800&display=swap');
+
+/* ── Variáveis ─────────────────────────────────────────────────────────────── */
+:root {
+  --cor-titulo: #f84e4e;
+  --bg-inicial: #ffff9e;
+  --fonte-titulo: 'Fredoka One', cursive;
+  --fonte-body: 'Nunito', sans-serif;
+  --sombra-titulo: 3px 3px 0px rgba(0, 0, 0, 0.12);
+  --sombra-img: 0 6px 12px rgba(0, 0, 0, 0.18);
+  --sombra-img-hover: 0 8px 18px rgba(0, 0, 0, 0.28);
+  --transicao-bg: background 0.5s ease;
+  --transicao-filter: filter 0.2s ease;
 }
-.container-img{
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg-inicial);
+  transition: var(--transicao-bg);
+  font-family: var(--fonte-body);
+  min-height: 100vh;
+}
+
+/* ── Título ────────────────────────────────────────────────────────────────── */
+.titulo {
+  text-align: center;
+  padding: 24px 20px 10px;
+}
+
+.titulo h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 3.5rem;
+  color: var(--cor-titulo);
+  text-shadow: var(--sombra-titulo);
+  line-height: 1.1;
+}
+
+.contador {
+  display: block;
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.45);
+  margin-top: 6px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── Imagem ────────────────────────────────────────────────────────────────── */
+.container-img {
   display: flex;
   justify-content: center;
-  margin: 50px auto;
+  margin: 30px auto;
 }
-.container-img img{
+
+.container-img img {
   max-width: 100%;
   width: 350px;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(var(--sombra-img));
+  transition: var(--transicao-filter);
 }
-.sub-titulo{
+
+.container-img img:hover {
+  filter: drop-shadow(var(--sombra-img-hover)) brightness(1.04);
+}
+
+/* ── Resultado ─────────────────────────────────────────────────────────────── */
+.sub-titulo {
   text-align: center;
   text-transform: uppercase;
   font-size: 1.8rem;
+  font-weight: 800;
+  padding: 16px 20px 40px;
+  min-height: 80px;
+  transition: color 0.3s ease;
 }
 
-body{
-  background-color: #ffff9e;
+/* ── Animações ─────────────────────────────────────────────────────────────── */
+@keyframes sacudir {
+  0%   { transform: rotate(0deg) scale(1); }
+  15%  { transform: rotate(-6deg) scale(1.06); }
+  30%  { transform: rotate(6deg) scale(1.09); }
+  45%  { transform: rotate(-4deg) scale(1.07); }
+  60%  { transform: rotate(4deg) scale(1.04); }
+  75%  { transform: rotate(-2deg) scale(1.02); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.sacudir {
+  animation: sacudir 0.45s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: aparecer 0.3s ease forwards;
 }
